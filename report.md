@@ -389,6 +389,26 @@ def curvature_real_world(left_fit, right_fit):
 
     return left_curverad, right_curverad
 ```
+And use the 2nd order polynomial fit for left and right to find out the offset from the center of the lane and car position.
+```python
+def get_x_position(fit, y):
+    '''
+    Get x position from the polyfit
+    '''
+    return fit[0]*y**2 + fit[1]*y + fit[2]
+
+def get_direction(left_fit, right_fit, img):
+    '''
+    Get position of center location
+    '''
+    xm_per_pix = 3.7/700
+    ploty = img.shape[0]
+    left_pos = get_x_position(left_fit, ploty)
+    right_pos = get_x_position(right_fit, ploty)
+    offest = (left_pos + right_pos)/2 - img.shape[0]
+    direction = "left" if offest < 0 else "right"
+    return abs(offest*xm_per_pix), direction
+```
 
 ####6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
