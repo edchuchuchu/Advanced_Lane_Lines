@@ -254,7 +254,7 @@ And this is how it looks like after perspective transform binary image.
 ####4. Describe how you identified lane-line pixels and fit their positions with a polynomial?
 
 At the first time, I use histogram and sliding windows on the perspective transform binary image to identify the lane-lines pixels and fit the 2nd order polynomial.
-And then, I use the result which gets from sliding windows at base to fit the 2nd order polynomial for the next frame.
+And then, I use the result which gets from sliding windows as base to fit the 2nd order polynomial for the next frame.
 
 ```python
 def sliding_windows(binary_warped, nwindows = 9, margin = 100, minpix = 50, plot = False):
