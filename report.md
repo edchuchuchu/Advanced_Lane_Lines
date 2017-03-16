@@ -1,4 +1,4 @@
-##Writeup Report
+## Writeup Report
 
 ---
 
@@ -37,17 +37,17 @@ The goals / steps of this project are the following:
 [video1]: ./project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
-###Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
+### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
 ---
-###Writeup / README
+### Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Advanced-Lane-Lines/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Advanced-Lane-Lines/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
 
 You're reading the report now!
-###Camera Calibration
+### Camera Calibration
 
-####1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
+#### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
 
 Here is the step for Camera Calibration:    
 First, loaded all the images under camera_cal folder.    
@@ -103,13 +103,13 @@ def cal_undistort(img, mtx, dist):
 ![alt text][image2]    
 ![alt text][image3]    
 
-###Pipeline (single images)
+### Pipeline (single images)
 
-####1. Provide an example of a distortion-corrected image.
+#### 1. Provide an example of a distortion-corrected image.
 Now we use the same mtx and dist to the road lane image to verify it.    
 ![alt text][image4]
 
-####2. Describe how you used color transforms, gradients or other methods to create a thresholded binary image.
+#### 2. Describe how you used color transforms, gradients or other methods to create a thresholded binary image.
 I had tried several combinations to decide which is the best way.
 1. Combination the gradient measurements with x, y, magnitude and direction:
 
@@ -251,7 +251,7 @@ Here is the result after I apply the src and dst for the perspective transform o
 And this is how it looks like after perspective transform binary image.
 ![alt text][image10]
 
-####4. Describe how you identified lane-line pixels and fit their positions with a polynomial?
+#### 4. Describe how you identified lane-line pixels and fit their positions with a polynomial?
 
 At the first time, I use histogram and sliding windows on the perspective transform binary image to identify the lane-lines pixels and fit the 2nd order polynomial.
 And then, I use the result which gets from sliding windows as base to fit the 2nd order polynomial for the next frame.
@@ -351,7 +351,7 @@ Using the result from sliding windows as base on next frame.
 I also tried convolution method. But it didn't works well, I decide to drop this method.    
 ![alt text][image14]    
 
-####5. Describe how you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
+#### 5. Describe how you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
 I use the following formula to get the curvature.    
 ![alt text][image15]     
@@ -410,7 +410,7 @@ def get_direction(left_fit, right_fit, img):
     return abs(offest*xm_per_pix), direction
 ```
 
-####6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
+#### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
 After highlight the region between left and right lines, we use the Minv to revert the image from Perspective to original.
 ```python
@@ -445,17 +445,17 @@ def draw_lines(img, warped, left_fit, right_fit, Minv):
 
 ---
 
-###Pipeline (video)
+### Pipeline (video)
 
-####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
+#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
 Here's a [link to my video result](./project_video.mp4)
 
 ---
 
-###Discussion
+### Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 Pipeline the above steps can success implementation lane line finder on the project video.
 However, it fail on challenge part.
