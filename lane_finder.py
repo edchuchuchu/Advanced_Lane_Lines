@@ -198,7 +198,7 @@ def perspective_color_thresh(img):
 ############################################# Detect lane lines ###############################################
 def draw_hist(img):
     img = np.copy(img)
-    histogram = np.sum(img[img.shape[0]/2:,:], axis=0)
+    histogram = np.sum(img[int(img.shape[0]/2):,:], axis=0)
     return histogram
 
 def sliding_windows(binary_warped, nwindows = 9, margin = 100, minpix = 50, plot = False):
@@ -208,7 +208,7 @@ def sliding_windows(binary_warped, nwindows = 9, margin = 100, minpix = 50, plot
     binary_warped = np.copy(binary_warped)
     # Already created a warped binary image called "binary_warped"
     # Take a histogram of the bottom half of the image
-    histogram = np.sum(binary_warped[binary_warped.shape[0]/2:,:], axis=0)
+    histogram = np.sum(binary_warped[int(binary_warped.shape[0]/2):,:], axis=0)
     # Create an output image to draw on and  visualize the result
     out_img = np.dstack((binary_warped, binary_warped, binary_warped))*255
     # Find the peak of the left and right halves of the histogram
